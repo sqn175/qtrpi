@@ -32,7 +32,12 @@ sudo mount -o bind /sys sysroot-full/sys
 sudo sed -i '/./s/^/#/g' sysroot-full/etc/ld.so.preload
 
 # Uncomment deb-src to have access to dev packages
-sudo sed -i '/deb-src/s/^#//g' sysroot-full/etc/apt/sources.list
+#sudo sed -i '/deb-src/s/^#//g' sysroot-full/etc/apt/sources.list
+# Modified by ShiQin, 2018.12.25
+sudo sed -i '1c\deb http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ jessie main non-free contrib' sysroot-full/etc/apt/sources.list
+sudo sed -i '1a\deb-src http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ jessie main non-free contrib' sysroot-full/etc/apt/sources.list
+
+
 
 # Install Qt dependencies
 sudo chroot sysroot-full /bin/bash -c 'apt-get update'
